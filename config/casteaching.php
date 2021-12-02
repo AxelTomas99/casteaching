@@ -2,15 +2,15 @@
 
 return [
     'default_user' => [
-        'pasword' => env('DEFAULT_USER_PASSWORD', '12345678'),
+        'password' => env('DEFAULT_USER_PASSWORD', 'alumne'),
         'name' => env('DEFAULT_USER_NAME', 'Axel Tomas'),
-        'mail' => env('DEFAULT_USER_MAIL', 'axeltomas@iesebre.com')
+        'email' => env('DEFAULT_USER_EMAIL', 'axeltomas@iesebre.com')
     ],
 
     'default_teacher' => [
-        'pasword' => env('DEFAULT_TEACHER_PASSWORD', '12345678'),
-        'name' => env('DEFAULT_TEACHER_NAME', 'Axel Tomas'),
-        'mail' => env('DEFAULT_TEACHER_MAIL', 'axeltomas@iesebre.com')
+        'password' => env('DEFAULT_TEACHER_PASSWORD', 'alumne'),
+        'name' => env('DEFAULT_TEACHER_NAME', 'Sergi Tur Badenas'),
+        'email' => env('DEFAULT_TEACHER_EMAIL', 'sergiturbadenas@iesebre.com')
     ]
 
 ];
