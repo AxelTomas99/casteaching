@@ -17,7 +17,7 @@ class VideosController extends Controller
     public function show($id)
     {
         return view('videos.show', [
-            'video' => Video::findorFail($id)
+            'video' => Video::findOrFail($id)
         ]);
     }
 }
