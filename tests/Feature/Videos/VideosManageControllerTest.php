@@ -23,7 +23,7 @@ class VideosManageControllerTest extends TestCase
     {
         $this->loginAsVideoManager();
 
-        $videos = create_saample_videos();
+        $videos = create_sample_videos();
 
         $response = $this->get('/manage/videos');
 
