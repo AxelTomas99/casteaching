@@ -134,3 +134,28 @@ if (!function_exists('create_permissions()')) {
         Permission::firstOrCreate(['name' => 'videos_manage_index']);
     }
 }
+if (!function_exists('create_permissions()')) {
+    function create_saample_videos()
+    {
+        $video1 = Video::create([
+            'title' => 'Video 3',
+            'description' => 'Bla Bla Bla',
+            'url' => 'https://youtu.be/*',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+        ]);
+        $video2 = Video::create([
+            'title' => 'Video 2',
+            'description' => 'Bla Bla Bla',
+            'url' => 'https://youtu.be/*f',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+        ]);
+        $video3 = Video::create([
+            'title' => 'Video 3',
+            'description' => 'Bla Bla Bla',
+            'url' => 'https://youtu.be/*d',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+        ]);
+
+        return [$video1, $video2, $video3];
+    }
+}
