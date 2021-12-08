@@ -54,6 +54,23 @@ class VideosManageControllerTest extends TestCase
 
         $response->assertStatus(403);
     }
+    /**
+     * @test
+     */
+    public function user_without_permissions_cannot_store_videos()
+    {
+        $this->loginAsRegularUser();
+
+        $video = objectify($videoArray = [
+            'title' => 'HTTP for noobs',
+            'description' => 'Te ensenyo tot el que se sobre HTTP',
+            'url' => 'https://tubeme.acacha.org/http',
+        ]);
+
+        $response = $this->post('/manage/videos',$videoArray);
+
+        $response->assertStatus(403);
+    }
 
     /**
      * @test
@@ -62,17 +79,13 @@ class VideosManageControllerTest extends TestCase
     {
         $this->loginAsVideoManager();
 
-        $video = objectify([
+        $video = objectify($videoArray = [
             'title' => 'HTTP for noobs',
             'description' => 'Te ensenyo tot el que se sobre HTTP',
             'url' => 'https://tubeme.acacha.org/http',
         ]);
 
-        $response = $this->post('/manage/videos', [
-            'title' => 'HTTP for noobs',
-            'description' => 'Te ensenyo tot el que se sobre HTTP',
-            'url' => 'https://tubeme.acacha.org/http',
-        ]);
+        $response = $this->post('/manage/videos',$videoArray);
 
         $response->assertRedirect(route('manage.videos'));
         $response->assertSessionHas('status', 'Successfully created');
