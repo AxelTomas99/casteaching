@@ -52,7 +52,7 @@ if (!function_exists('create_default_videos()')) {
     }
 }
 
-if (!function_exists('create_video_manager_user()')) {
+if (!function_exists('create_video_manager_user')) {
     function create_video_manager_user()
     {
         $user = User::create([
@@ -61,7 +61,9 @@ if (!function_exists('create_video_manager_user()')) {
             'password' => Hash::make('12345678')
         ]);
         Permission::create(['name' => 'videos_manage_index']);
+        Permission::create(['name' => 'videos_manage_create']);
         $user->givePermissionTo('videos_manage_index');
+        $user->givePermissionTo('videos_manage_create');
 
         add_personal_team($user);
         return $user;
@@ -84,7 +86,7 @@ if (! function_exists('create_user_manager_user')) {
     }
 }
 
-if (!function_exists('create_superadmin_user()')) {
+if (!function_exists('create_superadmin_user')) {
     function create_superadmin_user()
     {
         $user = User::create([
@@ -102,7 +104,7 @@ if (!function_exists('create_superadmin_user()')) {
     }
 }
 
-if (!function_exists('create_regualar_user()')) {
+if (!function_exists('create_regualar_user')) {
     function create_regualar_user()
     {
         $user = User::create([
@@ -119,7 +121,7 @@ if (!function_exists('create_regualar_user()')) {
 /**
  * @param $user
  */
-if (!function_exists('add_personal_team()')) {
+if (!function_exists('add_personal_team')) {
     function add_personal_team($user): void
     {
         try {
@@ -134,7 +136,7 @@ if (!function_exists('add_personal_team()')) {
     }
 }
 
-if (!function_exists('define_gates()')) {
+if (!function_exists('define_gates')) {
     function define_gates()
     {
         Gate::before(function ($user, $ability) {
@@ -144,13 +146,14 @@ if (!function_exists('define_gates()')) {
         });
     }
 }
-if (!function_exists('create_permissions()')) {
+if (!function_exists('create_permissions')) {
     function create_permissions()
     {
         Permission::firstOrCreate(['name' => 'videos_manage_index']);
+        Permission::firstOrCreate(['name' => 'videos_manage_create']);
     }
 }
-if (!function_exists('create_sample_videos()')) {
+if (!function_exists('create_sample_videos')) {
     function create_sample_videos()
     {
         $video1 = Video::create([
