@@ -64,12 +64,15 @@ if (!function_exists('create_video_manager_user')) {
         Permission::create(['name' => 'videos_manage_create']);
         Permission::create(['name' => 'videos_manage_destroy']);
         Permission::create(['name' => 'videos_manage_store']);
+        Permission::create(['name' => 'videos_manage_edit']);
+        Permission::create(['name' => 'videos_manage_update']);
 
         $user->givePermissionTo('videos_manage_index');
         $user->givePermissionTo('videos_manage_create');
         $user->givePermissionTo('videos_manage_destroy');
         $user->givePermissionTo('videos_manage_store');
-
+        $user->givePermissionTo('videos_manage_edit');
+        $user->givePermissionTo('videos_manage_update');
 
         add_personal_team($user);
         return $user;
@@ -165,13 +168,15 @@ if (!function_exists('create_permissions')) {
         Permission::firstOrCreate(['name' => 'videos_manage_create']);
         Permission::firstOrCreate(['name' => 'videos_manage_destroy']);
         Permission::firstOrCreate(['name' => 'videos_manage_store']);
+        Permission::firstOrCreate(['name' => 'videos_manage_edit']);
+        Permission::firstOrCreate(['name' => 'videos_manage_update']);
     }
 }
 if (!function_exists('create_sample_videos')) {
     function create_sample_videos()
     {
         $video1 = Video::create([
-            'title' => 'Video 3',
+            'title' => 'Video 1',
             'description' => 'Bla Bla Bla',
             'url' => 'https://youtu.be/*',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),

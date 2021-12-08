@@ -25,7 +25,7 @@ class VideoTest extends TestCase
         $video = Video::create([
             'title' => 'Ubuntu 101',
             'description' => '# Here description',
-            'url' => 'https://youtu.be/*',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
             'previous' => null,
             'next' => null,
@@ -37,6 +37,7 @@ class VideoTest extends TestCase
         $response->assertSee('Ubuntu 101');
         $response->assertSee('Here description');
         $response->assertSee('13 de desembre de 2020');
+        $response->assertSee('https://youtu.be/w8j07_DBl_I');
     }
 
     /**

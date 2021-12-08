@@ -6,6 +6,8 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Models\Permission;
 use Tests\TestCase;
 
 /**
@@ -175,11 +177,11 @@ class UsersManageControllerTest extends TestCase
     /**
      * @test
      */
-    public function guest_users_cannot_manage_users()
-    {
-        $response = $this->get('/manage/users');
-        $response->assertRedirect(route('login'));
-    }
+//    public function guest_users_cannot_manage_users()
+//    {
+//        $response = $this->get('/manage/users');
+//        $response->assertRedirect(route('login'));
+//    }
 
     /**
      * @test
