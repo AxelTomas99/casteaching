@@ -2981,8 +2981,16 @@ select {
 		margin-bottom: 0.5rem;
 	}
 
+	.md\:flex {
+		display: flex;
+	}
+
 	.md\:grid {
 		display: grid;
+	}
+
+	.md\:hidden {
+		display: none;
 	}
 
 	.md\:grid-cols-3 {
