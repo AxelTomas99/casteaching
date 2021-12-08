@@ -21,6 +21,74 @@ class VideosManageControllerTest extends TestCase
     /**
      * @test
      */
+    public function user_with_permissions_can_destroy_videos() {
+        $this->loginAsVideoManager();
+        $video = Video::create([
+            'title' => 'HTTP for noobs',
+            'description' => 'Te ensenyo tot el que se sobre HTTP',
+            'url' => 'https://tubeme.acacha.org/http',
+        ]);
+
+        $response = $this->delete('/manage/videos/' . $video->id);
+
+        $response->assertRedirect(route('manage.videos'));
+        $response->assertSessionHas('status', 'Successfully removed');
+
+        $this->assertNull(Video::find($video->id));
+        $this->assertNull($video->fresh());
+
+    }
+
+    /**
+     * @test
+     */
+    public function user_without_permissions_cannot_destroy_videos() {
+        $this->loginAsRegularUser();
+        $video = Video::create([
+            'title' => 'HTTP for noobs',
+            'description' => 'Te ensenyo tot el que se sobre HTTP',
+            'url' => 'https://tubeme.acacha.org/http',
+        ]);
+
+        $response = $this->delete('/manage/videos/' . $video->id);
+
+        $response->assertStatus(403);
+    }
+
+    /**
+     * @test
+     */
+    public function user_with_permissions_can_store_videos()
+    {
+        $this->loginAsVideoManager();
+
+        $video = objectify([
+            'title' => 'HTTP for noobs',
+            'description' => 'Te ensenyo tot el que se sobre HTTP',
+            'url' => 'https://tubeme.acacha.org/http',
+        ]);
+
+        $response = $this->post('/manage/videos', [
+            'title' => 'HTTP for noobs',
+            'description' => 'Te ensenyo tot el que se sobre HTTP',
+            'url' => 'https://tubeme.acacha.org/http',
+        ]);
+
+        $response->assertRedirect(route('manage.videos'));
+        $response->assertSessionHas('status', 'Successfully created');
+
+        $videoDB = Video::first();
+
+        $this->assertNotNull($videoDB);
+        $this->assertEquals($videoDB->title, $video->title);
+        $this->assertEquals($videoDB->description, $video->description);
+        $this->assertEquals($videoDB->url, $video->url);
+        $this->assertNull($video->published_at);
+    }
+
+    /**
+     * @test
+     */
     public function user_with_permissions_can_see_add_videos()
     {
         $this->loginAsVideoManager();
@@ -28,8 +96,9 @@ class VideosManageControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('videos.manage.index');
 
-        $response->assertDontSee('<form data-qa="form_video_create"',false);
+        $response->assertSee('<form data-qa="form_video_create"', false);
     }
+
     /**
      * @test
      */
@@ -49,7 +118,7 @@ class VideosManageControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('videos.manage.index');
 
-        $response->assertDontSee('<form data-qa="form_video_create"',false);
+        $response->assertDontSee('<form data-qa="form_video_create"', false);
 
     }
 
