@@ -11,7 +11,7 @@ use Spatie\Permission\Models\Permission;
 if (!function_exists('create_default_user()')) {
     function create_default_user()
     {
-        $user = User::create([
+        $user = User::firstOrcreate([
             'name' => config('casteaching.default_user.name', 'Axel Tomas Altadill'),
             'email' => config('casteaching.default_user.email', 'axeltomas@iesebre.com'),
             'password' => Hash::make(config('casteaching.default_user.password', 'alumne')),

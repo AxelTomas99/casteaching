@@ -177,11 +177,11 @@ class UsersManageControllerTest extends TestCase
     /**
      * @test
      */
-//    public function guest_users_cannot_manage_users()
-//    {
-//        $response = $this->get('/manage/users');
-//        $response->assertRedirect(route('login'));
-//    }
+    public function guest_users_cannot_manage_users()
+    {
+        $response = $this->get('/manage/users');
+        $response->assertRedirect(route('login'));
+    }
 
     /**
      * @test

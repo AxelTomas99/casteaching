@@ -230,11 +230,11 @@ class VideosManageControllerTest extends TestCase
     /**
      * @test
      */
-//    public function guest_users_cannot_manage_videos()
-//    {
-//        $response = $this->get('/manage/videos');
-//        $response->assertRedirect(route('login'));
-//    }
+    public function guest_users_cannot_manage_videos()
+    {
+        $response = $this->get('/manage/videos');
+        $response->assertRedirect(route('login'));
+    }
 
     /**
      * @test
