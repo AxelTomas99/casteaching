@@ -1,0 +1,14 @@
+{
+  "name": "axeltomas_casteaching",
+  "version": "1.0.0",
+  "description": "Javascript package casteaching API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Axel Tomas Altadill",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.25.0"
+  }
+}
