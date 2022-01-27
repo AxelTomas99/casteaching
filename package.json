@@ -10,7 +10,7 @@
         "production": "mix --production"
     },
     "dependencies": {
-        "axeltomas_casteaching": "file: ../casteaching_package"
+        "axeltomas_casteaching": "file:./casteaching_package"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.3.1",

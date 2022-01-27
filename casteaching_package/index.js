@@ -1,11 +1,17 @@
 import axios from "axios";
 
-export default {
-    videos: function () {
-        axios.get('http://casteaching.test/api/videos').then(function (data){
-            console.log(data)
-        }).catch(function (err){
-            console.log(err)
-        })
+const apiClient = axios.create({
+    baseURL: "http://casteaching.test/api",
+    withCredentials: false,
+    headers: {
+        Accept: 'aplication/json',
+        'Content-Type': 'aplication/json'
     }
+})
+
+export default {
+    videos: async function () {
+      const response = await apiClient.get('/videos')
+      return response.data
+    },
 }
