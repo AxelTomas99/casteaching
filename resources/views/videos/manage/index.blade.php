@@ -176,16 +176,13 @@
                                         {{ $video->url }}
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <a href="/videos/{{$video->id}}" target="_blank"
-                                           class="text-indigo-600 hover:text-indigo-900">Show</a>
+                                        <a href="/videos/{{$video->id}}" target="_blank" class="text-indigo-600 hover:text-indigo-900">Show</a>
                                         <a href="/manage/videos/{{$video->id}}" target="_blank" class="text-indigo-600 hover:text-indigo-900">Edit</a>
                                         <form class="inline" action="/manage/videos/{{$video->id}}" method="POST">
                                             @csrf
                                             @method('DELETE')
 
-                                            <a href="/videos/{{$video->id}}"
-                                               class="text-indigo-600 hover:text-indigo-900"
-                                               onclick="event.preventDefault();
+                                            <a href="/videos/{{$video->id}}" class="text-indigo-600 hover:text-indigo-900" onclick="event.preventDefault();
                                         this.closest('form').submit();">Delete</a>
                                         </form>
                                     </td>

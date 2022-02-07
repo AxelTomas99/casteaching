@@ -49,7 +49,9 @@
 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                            TODO ACTIONS
+                            <video-show-link :video="video"></video-show-link>
+                            <video-edit-link :video="video"></video-edit-link>
+                            <video-destroy-link :video="video"></video-destroy-link>
                         </td>
                     </tr>
                     </tbody>
@@ -60,8 +62,18 @@
 </template>
 
 <script>
+
+import VideoShowLink from "./VideoShowLink";
+import VideoEditLink from "./VideoEditLink";
+import VideoDestroyLink from "./VideoDestroyLink";
+
 export default {
     name: "VideosList",
+    components: {
+        'video-show-link': VideoShowLink,
+        'video-edit-link': VideoEditLink,
+        'video-destroy-link': VideoDestroyLink
+    },
     data(){
         return{
             videos: []
