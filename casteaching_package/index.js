@@ -1,11 +1,14 @@
 import axios from "axios";
 
+// Token JPMMApW4My44uADT0l5m1oyh1admwgyMd13gkWoW
+
 const apiClient = axios.create({
     baseURL: "http://casteaching.test/api",
-    withCredentials: false,
+    withCredentials: true,
     headers: {
         Accept: 'aplication/json',
-        'Content-Type': 'aplication/json'
+        'Content-Type': 'aplication/json',
+        Authorization: 'Bearer JPMMApW4My44uADT0l5m1oyh1admwgyMd13gkWoW'
     }
 })
 

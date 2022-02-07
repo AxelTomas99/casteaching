@@ -43,11 +43,13 @@
                 </div>
             </div>
         @endif
+        <div   id='app'>
+            @can('videos_manage_create')
+                <video-form></video-form>
+            @endcan
 
-        @can('videos_manage_create')
-            <video-form id='app'></video-form>
-        @endcan
+            <videos-list ></videos-list>
+        </div>
 
-        <videos-list id='app'></videos-list>
     </div>
 </x-casteaching-layout>

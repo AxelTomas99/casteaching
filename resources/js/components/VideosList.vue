@@ -5,6 +5,9 @@
                 <div class="bg-white px-4 py-5 border-b border-gray-200 sm:px-6">
                     <h3 class="text-lg leading-6 font-medium text-gray-900">
                         Videos
+                        <button @click="refresh">
+                            refresh
+                        </button>
                     </h3>
                 </div>
                 <table class="min-w-full divide-y divide-gray-200">
@@ -35,17 +38,17 @@
                     <!-- Odd row -->
                     <tr class="bg-white" v-for="video in videos">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                            {{video.id}}
+                            {{ video.id }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{video.title}}
+                            {{ video.title }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{video.description}}
+                            {{ video.description }}
 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            {{video.url}}
+                            {{ video.url }}
 
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
@@ -74,13 +77,21 @@ export default {
         'video-edit-link': VideoEditLink,
         'video-destroy-link': VideoDestroyLink
     },
-    data(){
-        return{
+    data() {
+        return {
             videos: []
         }
     },
     async created() {
-        this.videos = await window.axeltomas_casteaching.videos()
+        this.getVideos()
+    },
+    methods: {
+        async getVideos() {
+            this.videos = await window.axeltomas_casteaching.videos()
+        },
+        async refresh() {
+            this.getVideos()
+        }
     }
 }
 </script>
