@@ -1,5 +1,5 @@
 {
-  "name": "axeltomas_casteaching",
+  "name": "@axeltomas/axeltomas_casteaching",
   "version": "1.0.2",
   "description": "Javascript package casteaching API",
   "main": "index.js",

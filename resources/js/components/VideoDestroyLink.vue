@@ -3,8 +3,10 @@
 </template>
 
 <script>
+import bus from "../bus";
+
 export default {
-    name: "VideoShowLink",
+    name: "VideoDestroyLink",
     props: {
         video: {
             type: Object,
@@ -13,7 +15,13 @@ export default {
     },
     methods: {
        async remove(){
-            await window.axeltomas_casteaching.video.destroy(this.video.id)
+           try {
+               await window.axeltomas_casteaching.video.destroy(this.video.id)
+               this.$emit('removed')
+               bus.$emit('status','Video deleted successfully')
+           }catch (error){
+               console.log(error);
+           }
         }
     }
 }
