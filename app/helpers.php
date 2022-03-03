@@ -172,6 +172,18 @@ if (!function_exists('create_permissions')) {
         Permission::firstOrCreate(['name' => 'videos_manage_update']);
     }
 }
+
+if (!function_exists('create_sample_video')) {
+    function create_sample_video()
+    {
+        return Video::create([
+            'title' => 'Video 1',
+            'description' => 'Bla Bla Bla',
+            'url' => 'https://youtu.be/*',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+        ]);
+    }
+}
 if (!function_exists('create_sample_videos')) {
     function create_sample_videos()
     {
