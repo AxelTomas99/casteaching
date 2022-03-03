@@ -13,7 +13,6 @@ return [
     ],
     'admins' => [
         'axeltomas@iesebre.com',
-        'pringao@casteaching.com',
+        'sergiturbadenas@gmail.com',
     ]
-
 ];

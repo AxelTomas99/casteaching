@@ -1,0 +1,49 @@
+
+*** These modified files were found in JOE when it aborted on Thu Mar  3 20:46:55 2022
+*** JOE was aborted by UNIX signal 1
+
+*** File '/home/alumne/Code/casteaching/.git/COMMIT_EDITMSG'
+
+# Introduïu el missatge de comissió dels vostres canvis.
+# S'ignoraran les línies que comencin amb «#». Un missatge de
+# comissió buit avorta la comissió.
+#
+# En la branca production
+# Canvis a cometre:
+#	modificat:        config/casteaching.php
+#
+
+*** File '(Unnamed)'
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/.zshrc
+/home/alumne/Code/casteaching/.git/COMMIT_EDITMSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
+
+*** These modified files were found in JOE when it aborted on Thu Mar  3 20:48:15 2022
+*** JOE was aborted by UNIX signal 1
+
+*** File '(Unnamed)'
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/php_for_laravel_developers/.git/TAG_EDITMSG
+/home/alumne/.zshrc
+/home/alumne/Code/casteaching/.git/COMMIT_EDITMSG
+
+*** File '* Startup Log *'
+Processing '/etc/joe/editorrc'...
+Processing '/etc/joe/ftyperc'...
+Finished processing /etc/joe/ftyperc
+Finished processing /etc/joe/editorrc
