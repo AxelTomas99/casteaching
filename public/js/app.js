@@ -14,12 +14,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! axios */ "./node_modules/@acacha/casteaching/node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_0__);
-/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
 /* harmony default export */ function __WEBPACK_DEFAULT_EXPORT__(options) {
     let apiClient = axios__WEBPACK_IMPORTED_MODULE_0___default().create({
-        baseURL: (options && options.baseUrl) || process.env.MIX_API_URL,
+        baseURL: (options && options.baseUrl) || "https://casteaching.test/api",
         withCredentials: true,
         headers: {
             Accept: 'application/json',
@@ -8214,9 +8213,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _bus_js__WEBPACK_IMPORTED_MODULE_4__["default"].$on('updated', function () {
                   _this.refresh();
                 });
-              } catch (err) {
-                dd('hola');
-              }
+              } catch (err) {}
 
             case 1:
             case "end":
