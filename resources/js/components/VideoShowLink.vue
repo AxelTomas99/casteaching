@@ -1,5 +1,5 @@
 <template>
-    <a :href="'/vue/videos/'+ video.id" target="_blank" class="text-indigo-600 hover:text-indigo-900">Show</a>
+    <a :href="'/videos/' + video.id" target="_blank" class="text-indigo-600 hover:text-indigo-900 cursor-pointer">Show</a>
 </template>
 
 <script>
@@ -8,12 +8,11 @@ export default {
     props: {
         video: {
             type: Object,
-            require: true
+            required: true
         }
     }
 }
 </script>
 
 <style scoped>
-
 </style>
