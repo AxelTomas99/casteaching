@@ -3,8 +3,7 @@
 </template>
 
 <script>
-import bus from "../bus";
-
+import bus from '../bus'
 export default {
     name: "VideoEditLink",
     props: {
@@ -14,13 +13,12 @@ export default {
         }
     },
     methods: {
-        edit(){
-            bus.$emit('edit', this.video)
+        edit() {
+            bus.$emit('edit',this.video)
         }
     }
 }
 </script>
 
 <style scoped>
-
 </style>

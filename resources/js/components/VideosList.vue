@@ -13,20 +13,16 @@
                 <table class="min-w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                     <tr>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Id
                         </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Title
                         </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             Description
                         </th>
-                        <th scope="col"
-                            class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                             URL
                         </th>
                         <th scope="col" class="relative px-6 py-3">
@@ -35,7 +31,6 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <!-- Odd row -->
                     <tr class="bg-white" v-for="video in videos">
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                             {{ video.id }}
@@ -45,11 +40,9 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ video.description }}
-
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                             {{ video.url }}
-
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                             <video-show-link :video="video"></video-show-link>
@@ -65,13 +58,12 @@
 </template>
 
 <script>
-
 import VideoShowLink from "./VideoShowLink";
 import VideoEditLink from "./VideoEditLink";
 import VideoDestroyLink from "./VideoDestroyLink";
-import bus from '../bus.js';
-
-export default {
+import bus from '../bus.js'
+export default
+{
     name: "VideosList",
     components: {
         'video-show-link': VideoShowLink,
@@ -80,21 +72,26 @@ export default {
     },
     data() {
         return {
-            videos: []
+           videos: []
         }
     },
     async created() {
-        this.getVideos()
-        bus.$on('created', () => {
-            this.refresh()
-        });
-        bus.$on('updated', () => {
-            this.refresh()
-        });
+       try {
+           this.getVideos()
+           bus.$on('created',() => {
+               this.refresh()
+           });
+           bus.$on('updated',() => {
+               this.refresh()
+           });
+       } catch (err){
+           dd('hola')
+       }
+
     },
     methods: {
         async getVideos() {
-            this.videos = await window.axeltomas_casteaching.videos()
+            this.videos = await window.casteaching.videos()
         },
         async refresh() {
             this.getVideos()
@@ -104,5 +101,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
