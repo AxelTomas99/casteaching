@@ -85,9 +85,8 @@ export default
                this.refresh()
            });
        } catch (err){
-           dd('hola')
-       }
 
+       }
     },
     methods: {
         async getVideos() {
