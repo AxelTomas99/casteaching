@@ -10,7 +10,7 @@
         <div class="mx-auto sm:px-6 lg:px-8 w-full max-w-7xl">
             <x-status></x-status>
 
-            @can('videos_manage_create')
+        @can('videos_manage_create')
             <!-- This example requires Tailwind CSS v2.0+ -->
                 <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -35,9 +35,9 @@
                                                         Title
                                                     </label>
                                                     <div class="mt-1">
-                                                        <input required id="title" name="title" rows="3"
-                                                               class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
-                                                               placeholder="Titol del vídeo"></input>
+                                                        <input required id="title" name="title" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md p-2"
+                                                               placeholder="Titol del vídeo">
+                                                        </input>
                                                     </div>
                                                     <p class="mt-2 text-sm text-gray-500">
                                                         Titol curt del nostre vídeo
@@ -45,40 +45,45 @@
                                                 </div>
 
                                                 <div>
-                                                    <label for="description"
-                                                           class="block text-sm font-medium text-gray-700">
-                                                        Description
+                                                    <label for="description" class="block text-sm font-medium text-gray-700">
+                                                        Descripció
                                                     </label>
                                                     <div class="mt-1">
-                                                    <textarea required id="description" name="description" rows="3"
-                                                              class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
-                                                              placeholder="Description"></textarea>
+                                                        <textarea required id="description" name="description" rows="3" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 mt-1 block w-full sm:text-sm border border-gray-300 rounded-md"
+                                                                  placeholder="Descripció">
+                                                        </textarea>
                                                     </div>
                                                     <p class="mt-2 text-sm text-gray-500">
-                                                        Brief description for your profile. URLs are hyperlinked.
-                                                    </p>
+                                                        Breu descripció del video </p>
                                                 </div>
                                                 <div class="grid grid-cols-3 gap-6">
                                                     <div class="col-span-3 sm:col-span-2">
-                                                        <label for="url"
-                                                               class="block text-sm font-medium text-gray-700">
+                                                        <label for="url" class="block text-sm font-medium text-gray-700">
                                                             URL
                                                         </label>
                                                         <div class="mt-1 flex rounded-md shadow-sm">
-                  <span
-                      class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
-                    http://
-                  </span>
-                                                            <input required type="url" name="url" id="url"
-                                                                   class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300"
-                                                                   placeholder="youtube.com/">
+                                                            <span class="inline-flex items-center px-3 rounded-l-md border border-r-0 border-gray-300 bg-gray-50 text-gray-500 text-sm">
+                                                                http://
+                                                            </span>
+                                                            <input required type="url" name="url" id="url" class="focus:ring-indigo-500 focus:border-indigo-500 flex-1 block w-full rounded-none rounded-r-md sm:text-sm border-gray-300" placeholder="youtube.com/">
                                                         </div>
+                                                    </div>
+                                                </div>
+                                                <div class="grid grid-cols-3 gap-6">
+                                                    <div class="col-span-3 sm:col-span-2">
+                                                        <label for="url" class="block text-sm font-medium text-gray-700">
+                                                            Serie
+                                                        </label>
+                                                        <select id="serie" name="serie_id" class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                                            @foreach(\App\Models\Serie::all() as $serie)
+                                                            <option value="{{$serie->id}}">{{ $serie->title }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                                                <button type="submit"
-                                                        class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                <button type="submit" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                                                     Crear
                                                 </button>
                                             </div>
@@ -117,6 +122,10 @@
                                     class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                     URL
                                 </th>
+                                <th scope="col"
+                                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                    Serie
+                                </th>
                                 <th scope="col" class="relative px-6 py-3">
                                     <span class="sr-only">Actions</span>
                                 </th>
@@ -129,7 +138,7 @@
                                     <tr class="bg-white">
                                 @else
                                     <tr class="bg-gray-50">
-                                        @endif
+                                @endif
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                                             {{ $video->id }}
                                         </td>
@@ -142,6 +151,9 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                             {{ $video->url }}
                                         </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            {{ optional($video->serie)->title }}
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="/videos/{{$video->id}}" target="_blank"
                                                class="text-indigo-600 hover:text-indigo-900">Show</a>
@@ -151,8 +163,7 @@
                                                 @csrf
                                                 @method('DELETE')
 
-                                                <a href="/videos/{{$video->id}}"
-                                                   class="text-indigo-600 hover:text-indigo-900" onclick="event.preventDefault();
+                                                <a href="/videos/{{$video->id}}" class="text-indigo-600 hover:text-indigo-900" onclick="event.preventDefault();
                                         this.closest('form').submit();">Delete</a>
                                             </form>
                                         </td>

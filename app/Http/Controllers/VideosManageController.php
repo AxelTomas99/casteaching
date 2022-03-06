@@ -11,21 +11,23 @@ class VideosManageController extends Controller
 {
     public static function testedBy()
     {
-        return VideosManageController::class;
+        return VideosManageControllerTest::class;
     }
+
     public function index()
     {
-        return view('videos.manage.index',[
+        return view('videos.manage.index', [
             'videos' => Video::all()
         ]);
     }
 
     public function store(Request $request)
     {
-       $video = Video::create([
+        $video = Video::create([
             'title' => $request->title,
             'description' => $request->description,
             'url' => $request->url,
+            'serie_id' => $request->serie_id
         ]);
 
         session()->flash('status', 'Successfully created');
@@ -37,7 +39,7 @@ class VideosManageController extends Controller
 
     public function edit($id)
     {
-        return view('videos.manage.edit',['video' => Video::findOrFail($id) ]);
+        return view('videos.manage.edit', ['video' => Video::findOrFail($id)]);
     }
 
     public function update(Request $request, $id)
