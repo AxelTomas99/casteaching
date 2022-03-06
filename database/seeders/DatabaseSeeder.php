@@ -26,6 +26,6 @@ class DatabaseSeeder extends Seeder
         create_user_manager_user();
         create_regualar_user();
         create_permissions();
-
+        create_sample_series();
     }
 }

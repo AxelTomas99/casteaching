@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Serie;
 use App\Models\Team;
 use App\Models\User;
 use App\Models\Video;
@@ -47,7 +48,7 @@ if (!function_exists('create_default_videos()')) {
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
             'previous' => null,
             'next' => null,
-            'series_id' => 1
+            'serie_id' => 1
         ]);
     }
 }
@@ -79,8 +80,9 @@ if (!function_exists('create_video_manager_user')) {
     }
 }
 
-if (! function_exists('create_user_manager_user')) {
-    function create_user_manager_user() {
+if (!function_exists('create_user_manager_user')) {
+    function create_user_manager_user()
+    {
         $user = User::create([
             'name' => 'UsersManager',
             'email' => 'usersmanager@casteaching.com',
@@ -209,8 +211,9 @@ if (!function_exists('create_sample_videos')) {
         return [$video1, $video2, $video3];
     }
 }
-if (! function_exists('create_sample_users')) {
-    function create_sample_users() {
+if (!function_exists('create_sample_users')) {
+    function create_sample_users()
+    {
         $user1 = User::create([
             'name' => 'User 1',
             'email' => 'user1@prova.com',
@@ -277,7 +280,7 @@ class DomainObject implements ArrayAccess, JsonSerializable
 
     public function __toString()
     {
-        return (string) collect($this->data);
+        return (string)collect($this->data);
     }
 
     /**
@@ -295,9 +298,41 @@ class DomainObject implements ArrayAccess, JsonSerializable
 }
 
 
-if (! function_exists('objectify')) {
+if (!function_exists('objectify')) {
     function objectify($array)
     {
         return new DomainObject($array);
+    }
+}
+
+if (!function_exists('create_sample_sries')) {
+    function create_sample_series()
+    {
+        $serie1 = Serie::create([
+            'title' => 'TDD (Test Driven Development)',
+            'description'=>'Bla Bla Bla',
+            'image'=>'tdd.png',
+            'teacher_name'=>'Sergi Tur Badena',
+            'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
+        ]);
+
+        $serie2 = Serie::create([
+            'title' => 'CRUD amv Vue i Laravel',
+            'description'=>'Bla Bla Bla',
+            'image'=>'crud_amb_vue_laravel.png',
+            'teacher_name'=>'Sergi Tur Badena',
+            'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
+        ]);
+
+        $serie3 = Serie::create([
+            'title' => 'Ionic Real World',
+            'description'=>'Bla Bla Bla',
+            'image'=>'ionic_real_world.png',
+            'teacher_name'=>'Sergi Tur Badena',
+            'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
+        ]);
+
+        return [$serie1,$serie2,$serie3];
+
     }
 }
