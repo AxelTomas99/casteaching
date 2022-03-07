@@ -311,7 +311,7 @@ if (!function_exists('create_sample_sries')) {
         $serie1 = Serie::create([
             'title' => 'TDD (Test Driven Development)',
             'description'=>'Bla Bla Bla',
-            'image'=>'tdd.png',
+            'image'=>'/series/tdd.png',
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
@@ -319,7 +319,7 @@ if (!function_exists('create_sample_sries')) {
         $serie2 = Serie::create([
             'title' => 'CRUD amv Vue i Laravel',
             'description'=>'Bla Bla Bla',
-            'image'=>'crud_amb_vue_laravel.png',
+            'image'=>'/series/crud_amb_vue_laravel.png',
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
@@ -327,7 +327,7 @@ if (!function_exists('create_sample_sries')) {
         $serie3 = Serie::create([
             'title' => 'Ionic Real World',
             'description'=>'Bla Bla Bla',
-            'image'=>'ionic_real_world.png',
+            'image'=>'/series/ionic_real_world.png',
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);

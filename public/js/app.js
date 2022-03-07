@@ -27558,11 +27558,19 @@ var render = function () {
                     _vm._v(
                       "\n                    Videos\n                    "
                     ),
-                    _c("button", { on: { click: _vm.refresh } }, [
-                      _vm._v(
-                        "\n                        refresh\n                    "
-                      ),
-                    ]),
+                    _c(
+                      "button",
+                      {
+                        staticClass:
+                          "inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+                        on: { click: _vm.refresh },
+                      },
+                      [
+                        _vm._v(
+                          "\n                        refresh\n                    "
+                        ),
+                      ]
+                    ),
                   ]
                 ),
               ]
