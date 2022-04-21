@@ -12,7 +12,9 @@ class LandingPageControllerTest extends TestCase
 {
     use RefreshDatabase;
 
-    /** @test */
+    /**
+     * @test *
+     */
     public function landing_page_have_a_casteaching_series_component()
     {
         $response = $this->get('/');
