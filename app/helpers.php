@@ -377,7 +377,7 @@ if (!function_exists('create_sample_sries')) {
         ]);
 
         $serie4 = Serie::create([
-            'title' => 'Ionic Real World',
+            'title' => 'Serie TODO',
             'description'=>'Bla Bla Bla',
         ]);
 
