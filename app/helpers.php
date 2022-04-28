@@ -376,7 +376,12 @@ if (!function_exists('create_sample_sries')) {
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
 
-        return [$serie1,$serie2,$serie3];
+        $serie4 = Serie::create([
+            'title' => 'Ionic Real World',
+            'description'=>'Bla Bla Bla',
+        ]);
+
+        return [$serie1,$serie2,$serie3,$serie4];
 
     }
 }
