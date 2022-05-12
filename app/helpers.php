@@ -211,33 +211,33 @@ if (!function_exists('create_sample_video')) {
         return Video::create([
             'title' => 'Video 1',
             'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*',
+            'url' => 'https://www.youtube.com/embed/zyABmm6Dw64',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
         ]);
     }
 }
-if (!function_exists('create_sample_videos')) {
-    function create_sample_videos()
-    {
+
+if (! function_exists('create_sample_videos')) {
+    function create_sample_videos() {
         $video1 = Video::create([
-            'title' => 'Video 1',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*',
-            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'title' => 'TDD 115',
+            'description' => 'Bla bla bla',
+            'url' => 'https://www.youtube.com/embed/jKMTRtkXAF0'
         ]);
         $video2 = Video::create([
-            'title' => 'Video 2',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*f',
+            'title' => 'Laravel JetStream',
+            'description' => 'Bla bla bla',
+            'url' => 'https://www.youtube.com/embed/zyABmm6Dw64',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
         ]);
         $video3 = Video::create([
-            'title' => 'Video 3',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*d',
-            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'title' => 'Ubuntu 101',
+            'description' => '# Header 1
+            Bla bla bla
+            # Header 2
+            Bla bla bla 2',
+            'url' => 'https://www.youtube.com/embed/w8j07_DBl_I'
         ]);
-
         return [$video1, $video2, $video3];
     }
 }

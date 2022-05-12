@@ -15,15 +15,16 @@
                         <div class="flex-shrink-0">
                             <a href="{{$serie->url}}" class="block mt-2">
                                 <img class="h-48 w-full object-cover" src="/storage/{{$serie->image_url}}" alt="">
-                            </a>                        </div>
+                            </a>
+                        </div>
                         <div class="flex-1 bg-white p-6 flex flex-col justify-between">
                             <div class="flex-1">
                                 <p class="text-sm font-medium text-indigo-600">
-                                    <a href="{{$serie->url}}" class="hover:underline">
+                                    <a href="#" class="hover:underline">
                                         Screencasts
                                     </a>
                                 </p>
-                                <a href="#" class="block mt-2">
+                                <a href="{{$serie->url}}" class="block mt-2">
                                     <p class="text-xl font-semibold text-gray-900">
                                         {{ $serie->title }}
                                     </p>

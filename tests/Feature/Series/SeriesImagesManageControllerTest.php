@@ -104,9 +104,8 @@ class SeriesImagesManageControllerTest extends TestCase
             'image' => $file = $file = UploadedFile::fake()->image('serie.jpg', 6000, 400),
         ]);
         $response->assertRedirect();
-        $response->assertSessionHasErrors('image', function ($error) {
-            dd($error);
-        });
+        $response->assertSessionHasErrors('image');
+
         $this->assertEquals('series/anterior.png', $serie->refresh()->image);
     }
 }
