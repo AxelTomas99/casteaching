@@ -97,6 +97,7 @@ if (!function_exists('create_video_manager_user')) {
         Permission::create(['name' => 'videos_manage_store']);
         Permission::create(['name' => 'videos_manage_edit']);
         Permission::create(['name' => 'videos_manage_update']);
+        Permission::create(['name' => 'videos_manage_show']);
 
         $user->givePermissionTo('videos_manage_index');
         $user->givePermissionTo('videos_manage_create');
@@ -104,6 +105,7 @@ if (!function_exists('create_video_manager_user')) {
         $user->givePermissionTo('videos_manage_store');
         $user->givePermissionTo('videos_manage_edit');
         $user->givePermissionTo('videos_manage_update');
+        $user->givePermissionTo('videos_manage_show');
 
         add_personal_team($user);
         return $user;

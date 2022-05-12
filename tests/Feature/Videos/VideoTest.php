@@ -95,6 +95,7 @@ class VideoTest extends TestCase
         $response = $this->get('/videos/' . $video->id);
         $response->assertSuccessful();
     }
+
     /**
      * @test
      */
