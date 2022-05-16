@@ -1,7 +1,5 @@
 <?php
-
 namespace Tests\Unit;
-
 use App\Models\Serie;
 use App\Models\User;
 use App\Models\Video;
@@ -9,11 +7,9 @@ use Carbon\Carbon;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Facades\Hash;
 use Tests\TestCase;
-
 /**
  * @covers Video::class
  */
-
 class VideoTest extends TestCase
 {
     use RefreshDatabase;
@@ -21,8 +17,70 @@ class VideoTest extends TestCase
     /**
      * @test
      */
+    public function can_check_if_video_can_be_displayed()
+    {
+        $video = Video::create([
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm')
+        ]);
+
+        $this->assertTrue($video->canBeDisplayed());
+
+        $video->markAsOnlyForSubscribers();
+        $video->refresh();
+
+        $this->assertFalse($video->canBeDisplayed());
+    }
+
+    /**
+     * @test
+     */
+    public function a_video_can_need_a_subscription()
+    {
+        $video = Video::create([
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm')
+        ]);
+
+        $this->assertNull($video->needs_subscription);
+        // Video needs subscription -> needs_subscription
+        $video->markAsOnlyForSubscribers();
+        $video->refresh();
+        $this->assertNotNull($video->needs_subscription);
+    }
+
+    /**
+     * @test
+     */
+    public function can_check_if_a_video_need_subscriber()
+    {
+        $video = Video::create([
+            'title' => 'Ubuntu 101',
+            'description' => '# Here description',
+            'url' => 'https://youtu.be/w8j07_DBl_I',
+            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+        ]);
+
+        $this->assertFalse($video->only_for_subscribers);
+
+        $video->markAsOnlyForSubscribers();
+        $video->refresh();
+
+        $this->assertTrue($video->only_for_subscribers);
+    }
+
+
+    /**
+     * @test
+     */
     public function can_get_formatted_published_at_date()
     {
+        // 1 Preparació
+        // TODO CODE SMELL
         $video = Video::create([
             'title' => 'Ubuntu 101',
             'description' => '# Here description',
@@ -32,8 +90,9 @@ class VideoTest extends TestCase
             'next' => null,
             'serie_id' => 1
         ]);
-
+        // 2 Execució WISHFUL PROGRAMMING
         $dateToTest = $video->formatted_published_at;
+        // 3 comprovació / assert
         $this->assertEquals($dateToTest, '13 de desembre de 2020');
     }
 
@@ -42,6 +101,8 @@ class VideoTest extends TestCase
      */
     public function can_get_formatted_published_at_date_when_not_published()
     {
+        // 1 Preparació
+        // TODO CODE SMELL
         $video = Video::create([
             'title' => 'Ubuntu 101',
             'description' => '# Here description',
@@ -51,8 +112,9 @@ class VideoTest extends TestCase
             'next' => null,
             'serie_id' => 1
         ]);
-
+        // 2 Execució WISHFUL PROGRAMMING
         $dateToTest = $video->formatted_published_at;
+        // 3 comprovació / assert
         $this->assertEquals($dateToTest, '');
     }
 
@@ -66,9 +128,7 @@ class VideoTest extends TestCase
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/w8j07_DBl_I',
         ]);
-
         $this->assertNull($video->serie);
-
         $serie = Serie::create([
             'title' => 'Apren TDD',
             'description' => 'Bla bla bla',
@@ -76,11 +136,8 @@ class VideoTest extends TestCase
             'teacher_name' => 'Sergi Tur Badenas',
             'teacher_photo_url' => 'https://www.gravatar.com/avatar/' . md5('sergiturbadenas@gmail.com'),
         ]);
-
         $video->setSerie($serie);
-
         $this->assertNotNull($video->fresh()->serie);
-
     }
 
     /**
@@ -93,13 +150,11 @@ class VideoTest extends TestCase
             'email' => 'pepepardo@casteaching.com',
             'password' => Hash::make('12345678')
         ]);
-
         $video  = Video::create([
             'title' => 'TDD 101',
             'description' => 'Bla bla bla',
             'url' => 'https://youtu.be/ednlsVl-NHA'
         ]);
-
         $this->assertNull($video->owner);
         $video->setOwner($user);
         $this->assertNotNull($video->fresh()->user);

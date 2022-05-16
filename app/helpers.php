@@ -5,8 +5,10 @@ use App\Models\Team;
 use App\Models\User;
 use App\Models\Video;
 use Carbon\Carbon;
+use Illuminate\Http\File;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Permission;
 
 if (!function_exists('create_default_user()')) {
@@ -53,6 +55,34 @@ if (!function_exists('create_default_videos()')) {
     }
 }
 
+if (! function_exists('create_series_manager_user')) {
+    function create_series_manager_user() {
+        $user = User::create([
+            'name' => 'SeriesManager',
+            'email' => 'seriesmanager@casteaching.com',
+            'password' => Hash::make('12345678')
+        ]);
+
+        Permission::create(['name' => 'series_manage_index']);
+        Permission::create(['name' => 'series_manage_show']);
+        Permission::create(['name' => 'series_manage_create']);
+        Permission::create(['name' => 'series_manage_store']);
+        Permission::create(['name' => 'series_manage_edit']);
+        Permission::create(['name' => 'series_manage_update']);
+        Permission::create(['name' => 'series_manage_destroy']);
+        $user->givePermissionTo('series_manage_index');
+        $user->givePermissionTo('series_manage_show');
+        $user->givePermissionTo('series_manage_create');
+        $user->givePermissionTo('series_manage_store');
+        $user->givePermissionTo('series_manage_destroy');
+        $user->givePermissionTo('series_manage_edit');
+        $user->givePermissionTo('series_manage_update');
+
+        add_personal_team($user);
+        return $user;
+    }
+}
+
 if (!function_exists('create_video_manager_user')) {
     function create_video_manager_user()
     {
@@ -67,6 +97,7 @@ if (!function_exists('create_video_manager_user')) {
         Permission::create(['name' => 'videos_manage_store']);
         Permission::create(['name' => 'videos_manage_edit']);
         Permission::create(['name' => 'videos_manage_update']);
+        Permission::create(['name' => 'videos_manage_show']);
 
         $user->givePermissionTo('videos_manage_index');
         $user->givePermissionTo('videos_manage_create');
@@ -74,6 +105,7 @@ if (!function_exists('create_video_manager_user')) {
         $user->givePermissionTo('videos_manage_store');
         $user->givePermissionTo('videos_manage_edit');
         $user->givePermissionTo('videos_manage_update');
+        $user->givePermissionTo('videos_manage_show');
 
         add_personal_team($user);
         return $user;
@@ -181,33 +213,33 @@ if (!function_exists('create_sample_video')) {
         return Video::create([
             'title' => 'Video 1',
             'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*',
+            'url' => 'https://www.youtube.com/embed/zyABmm6Dw64',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
         ]);
     }
 }
-if (!function_exists('create_sample_videos')) {
-    function create_sample_videos()
-    {
+
+if (! function_exists('create_sample_videos')) {
+    function create_sample_videos() {
         $video1 = Video::create([
-            'title' => 'Video 1',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*',
-            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'title' => 'TDD 115',
+            'description' => 'Bla bla bla',
+            'url' => 'https://www.youtube.com/embed/jKMTRtkXAF0'
         ]);
         $video2 = Video::create([
-            'title' => 'Video 2',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*f',
+            'title' => 'Laravel JetStream',
+            'description' => 'Bla bla bla',
+            'url' => 'https://www.youtube.com/embed/zyABmm6Dw64',
             'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
         ]);
         $video3 = Video::create([
-            'title' => 'Video 3',
-            'description' => 'Bla Bla Bla',
-            'url' => 'https://youtu.be/*d',
-            'published_at' => Carbon::parse('December 13, 2020 8:00pm'),
+            'title' => 'Ubuntu 101',
+            'description' => '# Header 1
+            Bla bla bla
+            # Header 2
+            Bla bla bla 2',
+            'url' => 'https://www.youtube.com/embed/w8j07_DBl_I'
         ]);
-
         return [$video1, $video2, $video3];
     }
 }
@@ -305,34 +337,53 @@ if (!function_exists('objectify')) {
     }
 }
 
+if (! function_exists('create_placeholder_series_image')) {
+    function create_placeholder_series_image()
+    {
+        return Storage::disk('public')->putFileAs('series', new File(base_path('/series_photos/placeholder.png')),'placeholder.png');
+    }
+}
+
 if (!function_exists('create_sample_sries')) {
     function create_sample_series()
     {
+        $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/tdd.png')));
+
         $serie1 = Serie::create([
             'title' => 'TDD (Test Driven Development)',
             'description'=>'Bla Bla Bla',
-            'image'=>'/series/tdd.png',
+            'image' => $path,
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
+
+        sleep(1);
+        $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/crud_amb_vue_laravel.png')));
 
         $serie2 = Serie::create([
             'title' => 'CRUD amv Vue i Laravel',
             'description'=>'Bla Bla Bla',
-            'image'=>'/series/crud_amb_vue_laravel.png',
+            'image' => $path,
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
+
+        $path = Storage::disk('public')->putFile('series', new File(base_path('series_photos/ionic_real_world.png')));
 
         $serie3 = Serie::create([
             'title' => 'Ionic Real World',
             'description'=>'Bla Bla Bla',
-            'image'=>'/series/ionic_real_world.png',
+            'image' => $path,
             'teacher_name'=>'Sergi Tur Badena',
             'teacher_photo_url'=>'https://www.gravatar.com/avatar/'.md5('sergiturbadenas@gmail.com'),
         ]);
 
-        return [$serie1,$serie2,$serie3];
+        $serie4 = Serie::create([
+            'title' => 'Serie TODO',
+            'description'=>'Bla Bla Bla',
+        ]);
+
+        return [$serie1,$serie2,$serie3,$serie4];
 
     }
 }

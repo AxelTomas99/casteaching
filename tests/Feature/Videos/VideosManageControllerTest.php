@@ -302,7 +302,7 @@ class VideosManageControllerTest extends TestCase
         $response->assertStatus(200);
         $response->assertViewIs('videos.manage.index');
 
-        $response->assertSee('<form data-qa="form_video_create"', false);
+        $response->assertSee('data-qa="form_video_create"', false);
     }
 
     /**
